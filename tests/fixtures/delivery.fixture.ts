@@ -41,7 +41,6 @@ export const test = base.extend<Fixtures>({
       localStorage.setItem('jwt', token)
     }, auth)
     await mainPage.reload()
-
     await mainPage.route(`${BASE_API}${orderPath}/*`, (route) =>
       route.fulfill({
         status: 200,

@@ -20,7 +20,7 @@ export class OrderDto {
     this.comment = comment
   }
 
-  // add a method to create a new instance with orderid = undefined
+
   static createOrderWithoutId(): OrderDto {
     return new OrderDto(
       'OPEN',

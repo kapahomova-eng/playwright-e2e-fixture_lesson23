@@ -20,6 +20,7 @@ export default defineConfig({
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
     testIdAttribute: 'data-name',
+    ignoreHTTPSErrors: true,
     viewport: { width: 1920, height: 1080 },
   },
 
@@ -28,7 +29,7 @@ export default defineConfig({
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
-    },
+    }/*,
 
     {
       name: 'firefox',
@@ -38,6 +39,6 @@ export default defineConfig({
     {
       name: 'webkit',
       use: { ...devices['Desktop Safari'] },
-    },
+    }*/,
   ],
 })

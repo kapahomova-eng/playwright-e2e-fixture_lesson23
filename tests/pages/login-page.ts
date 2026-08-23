@@ -1,0 +1,51 @@
+import { type Locator, type Page } from '@playwright/test'
+import { OrderPage } from './order-page'
+import { SERVICE_URL } from '../../config/env-data'
+import { BasePage } from './base-page'
+import { OrderWithAuthorized } from './order-with-authorized'
+
+export class LoginPage extends BasePage {
+  readonly page: Page
+  readonly url: string = SERVICE_URL
+  readonly signInButton: Locator
+  readonly usernameField: Locator
+  readonly passwordField: Locator
+  readonly popupMessage: Locator
+  readonly userNameInputError: Locator
+  readonly passwordInputError: Locator
+  readonly closePopupButton: Locator
+
+  constructor(page: Page) {
+    super(page)
+    this.page = page
+    this.signInButton = page.getByTestId('signIn-button')
+    this.usernameField = page.getByTestId('username-input')
+    this.passwordField = page.getByTestId('password-input')
+    this.popupMessage = page.getByTestId('authorizationError-popup')
+    this.userNameInputError = page.getByTestId('username-input').nth(0)
+    this.passwordInputError = page.getByTestId('username-input').nth(1)
+    this.closePopupButton = page.getByTestId('authorizationError-popup-close-button')
+  }
+
+  async open() {
+    await this.page.goto(this.url)
+  }
+
+  async signIn(username: string, password: string) {
+    await this.usernameField.fill(username)
+    // await this.passwordField.fill(password)
+    // await this.signInButton.click()
+    await this.fillElement(this.passwordField, password)
+    await this.clickElement(this.signInButton)
+    return new OrderPage(this.page)
+  }
+
+  async signInandReturnAuthorizedPage(username: string, password: string) {
+    await this.usernameField.fill(username)
+    // await this.passwordField.fill(password)
+    // await this.signInButton.click()
+    await this.fillElement(this.passwordField, password)
+    await this.clickElement(this.signInButton)
+    return new OrderWithAuthorized(this.page)
+  }
+}

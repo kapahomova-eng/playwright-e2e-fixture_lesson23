@@ -12,4 +12,5 @@ export class LoginDto {
   static createLoginWithCorrectData(): LoginDto {
     return new LoginDto(USERNAME, PASSWORD)
   }
+
 }

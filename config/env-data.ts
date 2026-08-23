@@ -6,7 +6,6 @@ if (process.env.CI !== 'true') {
 } else {
   console.log('Running in CI environment')
 }
-
 const requiredVars = ['URL', 'TEST_USERNAME', 'TEST_PASSWORD', 'BASE_API']
 
 // Check for missing variables
