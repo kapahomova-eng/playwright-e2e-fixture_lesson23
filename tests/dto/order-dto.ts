@@ -20,7 +20,6 @@ export class OrderDto {
     this.comment = comment
   }
 
-
   static createOrderWithoutId(): OrderDto {
     return new OrderDto(
       'OPEN',
